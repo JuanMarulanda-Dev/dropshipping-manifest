@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # Servicio para la aplicación Spring Boot (my-order-tracker)
+  order-tracker:
+    image: my-order-tracker:latest
+    container_name: order-tracker
+    ports:
+      - "8080:8080" 
+    networks:
+      - app-network
+
+  # Servicio para la aplicación React (my-react-app)
+  react-app:
+    image: my-react-app:latest
+    container_name: react-app
+    ports:
+      - "3000:3000" 
+    networks:
+      - app-network
+
+  # Servicio para la aplicación Python (my-pyutil-app)
+  pyutil-app:
+    image: my-pyutils-app:latest
+    container_name: pyutils-app
+    ports:
+      - "5002:5002" 
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
